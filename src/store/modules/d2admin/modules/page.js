@@ -38,6 +38,7 @@ export default {
         // valid 有效列表 1, 1, 0, 1 => 有效, 有效, 失效, 有效
         const valid = []
         // 处理数据
+        debugger
         state.opened = value.map(opened => {
           // 忽略首页
           if (opened.fullPath === '/index') {
@@ -46,6 +47,7 @@ export default {
           }
           // 尝试在所有的支持多标签页的页面里找到 name 匹配的页面
           const find = state.pool.find(item => item.name === opened.name)
+
           // 记录有效或无效信息
           valid.push(find ? 1 : 0)
           // 返回合并后的数据 新的覆盖旧的
@@ -127,6 +129,10 @@ export default {
      * @param {Object} param 从路由钩子的 to 对象上获取 { name, params, query, fullPath } 路由信息
      */
     open ({ state, commit, dispatch }, { name, params, query, fullPath }) {
+      // console.log('pool:' + JSON.stringify(state.pool))
+      // console.log('opened:' + JSON.stringify(state.opened))
+      // console.log('current:' + JSON.stringify(state.current))
+      // console.log('keepAlive:' + JSON.stringify(state.keepAlive))
       return new Promise(async resolve => {
         // 已经打开的页面
         let opened = state.opened

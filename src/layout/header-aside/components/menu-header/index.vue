@@ -54,7 +54,9 @@ export default {
     '$route.matched': {
 
       handler (val) {
-        this.active = val[val.length - 1].path
+        let myRe = new RegExp(/(?<=\/main\/).\S*/, 'gi')
+        // this.active = val[val.length - 1].path
+        this.active = myRe.exec(val[val.length - 1].path)[0]
       },
       immediate: true
     }

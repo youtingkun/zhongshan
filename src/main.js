@@ -76,7 +76,6 @@ new Vue({
     // 检测路由变化切换侧边栏内容
     '$route.matched': {
       handler (matched) {
-        debugger
         // if (matched.length > 0) {
         //   const _side = menuAside.filter(menu => {
         //     return menu.path === matched[0].path
@@ -84,7 +83,19 @@ new Vue({
         //   this.$store.commit('d2admin/menu/asideSet', _side.length > 0 ? _side[0].children : [])
         // }
         if (matched.length > 1) {
-          let tempPath = matched[matched.length - 1]
+          let _this = this
+          // 获取路由路径
+          let tempPath = matched[matched.length - 1].path
+          // 截取路由路径
+          let myRe = new RegExp(/(?<=\/main\/).*?(?=(\/|$))/, 'gi')
+          let headerPath = myRe.exec(tempPath)[0]
+          // 路由匹配菜单
+          let headerMenu = JSON.parse(localStorage.getItem('headerMenu'))
+          headerMenu.forEach(element => {
+            if (element.path === headerPath) {
+              _this.$store.commit('d2admin/menu/asideSet', element.children)
+            }
+          })
         }
       },
       immediate: true

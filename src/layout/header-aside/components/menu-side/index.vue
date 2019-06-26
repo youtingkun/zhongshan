@@ -24,6 +24,7 @@ import menuMixin from '../mixin/menu'
 import d2LayoutMainMenuItem from '../components/menu-item/index.vue'
 import d2LayoutMainMenuSub from '../components/menu-sub/index.vue'
 import BScroll from 'better-scroll'
+import { debuglog } from 'util'
 export default {
   name: 'd2-layout-header-aside-menu-side',
   mixins: [
@@ -57,10 +58,13 @@ export default {
     // 监听路由 控制侧边栏激活状态
     '$route': {
       handler ({ fullPath }) {
-        this.active = fullPath
+        // this.active = fullPath
+        let myRe = new RegExp(/(?<=\/main\/).\S*/, 'gi')
+        this.active = myRe.exec(fullPath)[0]
         this.$nextTick(() => {
           if (this.aside.length > 0 && this.$refs.menu) {
-            this.$refs.menu.activeIndex = fullPath
+            // this.$refs.menu.activeIndex = fullPath
+            this.$refs.menu.activeIndex = myRe.exec(fullPath)[0]
           }
         })
       },
@@ -74,6 +78,9 @@ export default {
     this.scrollDestroy()
   },
   methods: {
+    handleMenuSelect (index, indexPath) {
+      this.$router.push({ path: `/main/${index}` })
+    },
     scrollInit () {
       this.BS = new BScroll(this.$el, {
         mouseWheel: true,

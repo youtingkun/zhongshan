@@ -34,13 +34,12 @@ export default {
         localStorage.setItem('headerMenu', JSON.stringify(res.data))
         localStorage.setItem('asideMenu', JSON.stringify(res.data))
         commit('headerSet', res.data)
-
         await dispatch('generateRouter', res.data)
       })
     },
 
     // 动态生成路由
-    generateRouter ({ state, dispatch }, data) {
+    generateRouter ({ state, dispatch, commit }, data) {
       // 遍历拿到子节点
       const getLastNode = function (data) {
         data.forEach(element => {
@@ -53,18 +52,23 @@ export default {
       }
       getLastNode(data)
       // 生成路由
-      const formatRoutes = function (routes) {
-        routes.forEach(route => {
-          if (route.children) {
-            formatRoutes(route.children)
+      const formatRoutes = function (data) {
+        data.forEach(element => {
+          if (element.children) {
+            formatRoutes(element.children)
           } else {
-            route.component = _import(route.component)
+            element.component = _import(element.component)
+            element.name = element.title
+            element.meta = { title: element.title }
           }
         })
       }
       formatRoutes(mainRouter[0].children)
+
       // 添加路由
       router.addRoutes(mainRouter)
+
+      commit('d2admin/page/init', [...routes, ...mainRouter], { root: true })
     },
     /**
      * 设置侧边栏展开或者收缩

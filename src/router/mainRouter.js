@@ -7,7 +7,7 @@ const meta = { auth: true }
 
 export default [{
   path: '/main',
-  name: 'testMain',
+  name: 'main',
   meta: { auth: true },
   redirect: { path: '/index' },
   component: layoutHeaderAside,
