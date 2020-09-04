@@ -5470,6 +5470,11 @@ inquirer@^6.2.2:
     strip-ansi "^5.1.0"
     through "^2.3.6"
 
+install@^0.12.2:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/install/-/install-0.12.2.tgz#ea10e9b2cbb5b0484f25080b24b5b34429d9f564"
+  integrity sha512-+7thTb4Rpvs9mnlhHKGZFJbGOO6kyMgy+gg0sgM5vFzIFK0wrCYXqdlaM71Bi289DTuPHf61puMFsaZBcwDIrg==
+
 interactjs@^1.3.4:
   version "1.4.9"
   resolved "https://registry.npm.taobao.org/interactjs/download/interactjs-1.4.9.tgz#7fb30c7c1c5befb767e700ebef12acaf22f8e563"
@@ -6883,10 +6888,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-marked@*, marked@^0.6.2:
-  version "0.6.2"
-  resolved "https://registry.npm.taobao.org/marked/download/marked-0.6.2.tgz#c574be8b545a8b48641456ca1dbe0e37b6dccc1a"
-  integrity sha1-xXS+i1Rai0hkFFbKHb4ON7bczBo=
+marked@*, marked@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.7.0.tgz#b64201f051d271b1edc10a04d1ae9b74bb8e5c0e"
+  integrity sha512-c+yYdCZJQrsRjTPhUx7VKkApw9bwDkNbHUKo1ovgcfDjb2kc8rLuRbIFyXL5WOEUwzSSKo3IXpph2K6DqB/KZg==
 
 math-random@^1.0.1:
   version "1.0.4"
